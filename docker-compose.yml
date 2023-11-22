@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+  dcsa-template:
+    container_name: dcsa_template
+    build:
+      .
+    ports:
+      - 9090:9090
+    environment:
+      - "db_hostname=dcsa-test-db"
+      - "SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-nosecurity}"
+      - "SPRING_DATASOURCE_PASSWORD=9c072fe8-c59c-11ea-b8d1-7b6577e9f3f5"
+      - "ROOT_LOG_LEVEL=${ROOT_LOG_LEVEL:-INFO}"
+      - "DCSA_LOG_LEVEL=${DCSA_LOG_LEVEL:-INFO}"
+    logging:
+      options:
+        max-file: '10'
+        max-size: 200k
+    links:
+      - dcsa-test-db:dcsa-test-db
+    depends_on:
+      - dcsa-test-db
+
+  dcsa-test-db:
+    image: postgres:15-alpine
+    container_name: dcsa_template_db
+    environment:
+      POSTGRES_PASSWORD: "change_this_password"
+    volumes:
+      - ./domain/src/main/init.db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - 5432:5432
