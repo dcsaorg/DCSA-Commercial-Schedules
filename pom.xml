@@ -8,12 +8,12 @@
 		<version>1.5-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.dcsa.template</groupId>
-	<artifactId>dcsa-template-parent</artifactId>
+	<groupId>org.dcsa.commercialschedules</groupId>
+	<artifactId>dcsa-commercialschedules-parent</artifactId>
 	<version>${revision}${sha1}${changelist}</version>
 	<packaging>pom</packaging>
-	<name>${project.name}</name>
-	<description>${project.name} Project</description>
+	<name>DCSA-Commercial-Schedules</name>
+	<description>Commercial Schedules</description>
 
 	<properties>
 		<!-- Define DCSA-Project version -->
@@ -30,16 +30,16 @@
 		<!-- End: Define Shared kernel version -->
 
 		<hibernate-types.version>2.21.1</hibernate-types.version>
-		<group.id>org.dcsa.template</group.id>
-		<artifact.id>dcsa-template</artifact.id>
-		<project.name>DCSA Template</project.name>
+		<group.id>org.dcsa.commercialschedules</group.id>
+		<artifact.id>dcsa-commercialschedules</artifact.id>
+		<project.name>DCSA-Commercial-Schedules</project.name>
 	</properties>
 
 	<modules>
-		<module>transfer-obj</module>
-		<module>domain</module>
-		<module>service</module>
-		<module>application</module>
+		<module>commercialschedules-transfer-obj</module>
+		<module>commercialschedules-domain</module>
+		<module>commercialschedules-service</module>
+		<module>commercialschedules-application</module>
 	</modules>
 
 	<dependencies>
@@ -59,18 +59,18 @@
 			</dependency>
 
 			<dependency>
-				<groupId>${group.id}</groupId>
-				<artifactId>transfer-obj</artifactId>
+				<groupId>org.dcsa.commercialschedules</groupId>
+				<artifactId>dcsa-commercialschedules-transfer-obj</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>${group.id}</groupId>
-				<artifactId>domain</artifactId>
+				<groupId>org.dcsa.commercialschedules</groupId>
+				<artifactId>dcsa-commercialschedules-domain</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>${group.id}</groupId>
-				<artifactId>service</artifactId>
+				<groupId>org.dcsa.commercialschedules</groupId>
+				<artifactId>dcsa-commercialschedules-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
