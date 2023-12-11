@@ -2,14 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.dcsa.template</groupId>
-		<artifactId>dcsa-template-parent</artifactId>
+		<groupId>org.dcsa.commercialschedules</groupId>
+		<artifactId>dcsa-commercialschedules-parent</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
-	<name>${project.name} - Domain</name>
-	<description>${project.name} - Domain</description>
-	<artifactId>domain</artifactId>
+	<name>DCSA Commercial Schedules - Domain</name>
+	<description>DCSA Commercial Schedules - Domain</description>
+	<artifactId>dcsa-commercialschedules-domain</artifactId>
 	<version>${revision}${sha1}${changelist}</version>
 	<packaging>jar</packaging>
 
