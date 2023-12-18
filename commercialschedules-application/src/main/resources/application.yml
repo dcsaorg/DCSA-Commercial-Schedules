@@ -4,10 +4,10 @@ dcsa:
 
 spring:
   application:
-    name: dcsa-template
+    name: dcsa-commercialschedules
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${db_hostname}/dcsa_template
+    url: jdbc:postgresql://${db_hostname}/dcsa_commercialschedules
     username: dcsa_db_owner
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -69,7 +69,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${db_hostname:localhost}/dcsa_template
+    url: jdbc:postgresql://${db_hostname:localhost}/dcsa_commercialschedules
     username: dcsa_db_owner
     password: 9c072fe8-c59c-11ea-b8d1-7b6577e9f3f5
 

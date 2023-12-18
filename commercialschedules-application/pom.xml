@@ -2,29 +2,29 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.dcsa.template</groupId>
-		<artifactId>dcsa-template-parent</artifactId>
+		<groupId>org.dcsa.commercialschedules</groupId>
+		<artifactId>dcsa-commercialschedules-parent</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
-	<name>${project.name} - Application</name>
-	<description>${project.name} - Application</description>
-	<artifactId>${artifact.id}-application</artifactId>
+	<name>DCSA Commercial Schedules - Application</name>
+	<description>DCSA Commercial Schedules - Application</description>
+	<artifactId>dcsa-commercialschedules-application</artifactId>
 	<version>${revision}${sha1}${changelist}</version>
 	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>${group.id}</groupId>
-			<artifactId>transfer-obj</artifactId>
+			<groupId>org.dcsa.commercialschedules</groupId>
+			<artifactId>dcsa-commercialschedules-transfer-obj</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>${group.id}</groupId>
-			<artifactId>domain</artifactId>
+			<groupId>org.dcsa.commercialschedules</groupId>
+			<artifactId>dcsa-commercialschedules-domain</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>${group.id}</groupId>
-			<artifactId>service</artifactId>
+			<groupId>org.dcsa.commercialschedules</groupId>
+			<artifactId>dcsa-commercialschedules-service</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>

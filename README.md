@@ -15,11 +15,11 @@ Setup a Github Personal Access Token as mentioned [here](https://github.com/dcsa
 - [ ] Rename the project, DCSA-{ProjectName} (e.g. DCSA-TNT)
 - [ ] `DCSA-Project-Template > pom.xml`
   ```xml
-   <groupId>org.dcsa.template</groupId>
+   <groupId>org.dcsa.commercialschedules</groupId>
    <artifactId>dcsa-template-parent</artifactId>
 
    <properties>
-        <group.id>org.dcsa.template</group.id>
+        <group.id>org.dcsa.commercialschedules</group.id>
         <artifact.id>dcsa-template</artifact.id>
         <project.name>DCSA Template</project.name>
 	  </properties>
@@ -27,7 +27,7 @@ Setup a Github Personal Access Token as mentioned [here](https://github.com/dcsa
 - [ ] `DCSA-Project-Template > domain > pom.xml`
   ```xml
     <parent>
-        <groupId>org.dcsa.template</groupId>
+        <groupId>org.dcsa.commercialschedules</groupId>
         <artifactId>dcsa-template-parent</artifactId>
         ...
     </parent>
@@ -35,7 +35,7 @@ Setup a Github Personal Access Token as mentioned [here](https://github.com/dcsa
 - [ ] `DCSA-Project-Template > transfer-obj > pom.xml`
   ```xml
     <parent>
-        <groupId>org.dcsa.template</groupId>
+        <groupId>org.dcsa.commercialschedules</groupId>
         <artifactId>dcsa-template-parent</artifactId>
         ...
     </parent>
@@ -43,7 +43,7 @@ Setup a Github Personal Access Token as mentioned [here](https://github.com/dcsa
 - [ ] `DCSA-Project-Template > service > pom.xml`
   ```xml
     <parent>
-        <groupId>org.dcsa.template</groupId>
+        <groupId>org.dcsa.commercialschedules</groupId>
         <artifactId>dcsa-template-parent</artifactId>
         ...
     </parent>
@@ -51,12 +51,12 @@ Setup a Github Personal Access Token as mentioned [here](https://github.com/dcsa
 - [ ] `DCSA-Project-Template > application > pom.xml`
   ```xml
     <parent>
-        <groupId>org.dcsa.template</groupId>
+        <groupId>org.dcsa.commercialschedules</groupId>
         <artifactId>dcsa-template-parent</artifactId>
         ...
     </parent>
   ```
-- [ ] Rename package `DCSA-Project-Template > application > src > main > java > org.dcsa.template`
+- [ ] Rename package `DCSA-Project-Template > application > src > main > java > org.dcsa.commercialschedules`
 - [ ] `DCSA-Project-Template > application > src > main > resources > application.yml`
   ```yaml
     spring:

@@ -2,14 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.dcsa.template</groupId>
-		<artifactId>dcsa-template-parent</artifactId>
+		<groupId>org.dcsa.commercialschedules</groupId>
+		<artifactId>dcsa-commercialschedules-parent</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
-	<name>${project.name} - Transfer Objects</name>
-	<description>${project.name} - Transfer Objects</description>
-	<artifactId>transfer-obj</artifactId>
+	<name>DCSA Commercial Schedules - Transfer Objects</name>
+	<description>DCSA Commercial Schedules - Transfer Objects</description>
+	<artifactId>dcsa-commercialschedules-transfer-obj</artifactId>
 	<version>${revision}${sha1}${changelist}</version>
 	<packaging>jar</packaging>
 
