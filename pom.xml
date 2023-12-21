@@ -40,6 +40,7 @@
 		<module>commercialschedules-domain</module>
 		<module>commercialschedules-service</module>
 		<module>commercialschedules-application</module>
+		<module>commercialschedules-persistence</module>
 	</modules>
 
 	<dependencies>
@@ -76,6 +77,11 @@
 			<dependency>
 				<groupId>org.dcsa.commercialschedules</groupId>
 				<artifactId>dcsa-commercialschedules-application</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.dcsa.commercialschedules</groupId>
+				<artifactId>dcsa-commercialschedules-persistence</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

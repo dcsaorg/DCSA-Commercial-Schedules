@@ -4,14 +4,23 @@ dcsa:
 
 spring:
   application:
-    name: dcsa-commercialschedules
+    name: DCSA-COMMERCIALSCHEDULES
+    context-path: /cs/v1
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${db_hostname}/dcsa_commercialschedules
-    username: dcsa_db_owner
+    url: jdbc:postgresql://${DB_HOST}/${DB_NAME}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:change_this_password}
+    hikari:
+      maximum-pool-size: 10
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate.ddl-auto: validate
+    hibernate.ddl-auto: none
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    user: ${ADMIN_DB_USER:admin}
+    password: ${ADMIN_DB_PASSWORD:change_this_password}
   security:
     oauth2:
       resourceserver:

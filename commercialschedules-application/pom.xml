@@ -27,6 +27,10 @@
 			<artifactId>dcsa-commercialschedules-service</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.dcsa.commercialschedules</groupId>
+			<artifactId>dcsa-commercialschedules-persistence</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 		</dependency>
