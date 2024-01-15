@@ -41,14 +41,6 @@ public class Vessel {
   @Column(name = "is_dummy")
   private Boolean isDummyVessel;
 
-  @Column(name = "length_overall", columnDefinition = "numeric")
-  private Float vesselLength;
-
-  @Column(name = "width", columnDefinition = "numeric")
-  private Float vesselWidth;
-
-  @Column(name = "dimension_unit", length = 3)
-  private String dimensionUnit;
 
   @ToString.Exclude
   @EqualsAndHashCode.Exclude

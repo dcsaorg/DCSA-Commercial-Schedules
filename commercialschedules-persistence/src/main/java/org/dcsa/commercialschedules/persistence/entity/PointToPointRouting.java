@@ -25,12 +25,12 @@ public class PointToPointRouting {
 
   @ToString.Exclude
   @OneToOne
-  @Column(name = "place_of_receipt_id", nullable = false)
+  @JoinColumn(name = "place_of_receipt_id", nullable = false)
   private Place placeOfReceipt;
 
   @ToString.Exclude
   @OneToOne
-  @Column(name = "place_of_delivery_id", nullable = false)
+  @JoinColumn(name = "place_of_delivery_id", nullable = false)
   private Place placeOfDelivery;
 
   @OneToMany(mappedBy = "pointToPointRouting", cascade = CascadeType.ALL)

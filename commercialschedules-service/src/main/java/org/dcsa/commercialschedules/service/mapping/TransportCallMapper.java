@@ -28,8 +28,7 @@ public abstract class TransportCallMapper {
             source = "importVoyage.universalVoyageReference"),
         @Mapping(
             target = "universalExportVoyageReference",
-            source = "exportVoyage.universalVoyageReference"),
-        @Mapping(target = "statusCode", source = "portCallStatusCode")
+            source = "exportVoyage.universalVoyageReference")
       })
   public abstract TransportCallTO toTO(TransportCall transportCall);
 

@@ -63,9 +63,6 @@ public class TransportCall {
   private Voyage exportVoyage;
 
 
-  @Column(name = "port_call_status_type_code", length = 4, columnDefinition = "bpchar")
-  private String portCallStatusCode;
-
   @Column(name="port_visit_reference", length=50)
   private String portVisitReference;
 

@@ -25,7 +25,7 @@ public class Place {
 
   @ToString.Exclude
   @OneToOne
-  @Column(name = "location_id")
+  @JoinColumn (name = "location_id")
   private LocationEntity location;
 
   @Column(name = "date_time", nullable = false)

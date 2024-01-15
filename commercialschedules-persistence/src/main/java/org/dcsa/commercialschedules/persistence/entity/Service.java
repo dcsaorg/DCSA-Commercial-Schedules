@@ -8,6 +8,21 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@NamedEntityGraph(
+  name = "graph.vessels",
+  attributeNodes = {
+    @NamedAttributeNode(value = "vessels", subgraph = "subgraph.transportCalls")
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "subgraph.transportCalls",
+      attributeNodes = {
+        @NamedAttributeNode(value = "transportCalls", subgraph = "subgraph.timestamps")
+      }),
+    @NamedSubgraph(
+      name = "subgraph.timestamps",
+      attributeNodes = {@NamedAttributeNode(value = "timestamps")})
+  })
 @Data
 @Builder
 @NoArgsConstructor

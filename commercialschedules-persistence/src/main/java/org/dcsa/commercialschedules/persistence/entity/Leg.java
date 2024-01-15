@@ -16,7 +16,7 @@ public class Leg {
   @Id
   @GeneratedValue
   @Column(name = "id", nullable = false)
-  private int id;
+  private UUID id;
 
   @Column(name= "mode_of_transport")
   private String modeOfTransport;
@@ -43,16 +43,16 @@ public class Leg {
 
   @ToString.Exclude
   @OneToOne
-  @Column(name = "departure_id")
+  @JoinColumn(name = "departure_id")
   private Place departure;
 
   @ToString.Exclude
   @OneToOne
-  @Column(name = "departure_id")
+  @JoinColumn(name = "arrival_id")
   private Place arrival;
 
   @ManyToOne
-  @Column(name = "point_to_point_routing_id")
+  @JoinColumn(name = "point_to_point_routing_id")
   private PointToPointRouting pointToPointRouting;
 
 }

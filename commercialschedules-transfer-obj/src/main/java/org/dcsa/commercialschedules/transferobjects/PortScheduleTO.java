@@ -1,6 +1,15 @@
 package org.dcsa.commercialschedules.transferobjects;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Data
-public class PortScheduleTO {}
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class PortScheduleTO {
+  private LocationTO location;
+  private List<VesselTO> vesselSchedules;
+}
