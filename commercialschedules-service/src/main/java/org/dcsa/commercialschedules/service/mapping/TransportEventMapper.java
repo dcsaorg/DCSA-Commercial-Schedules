@@ -6,6 +6,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Mapper(componentModel = "spring")
 public interface TransportEventMapper {
   @Mappings(
@@ -15,11 +18,8 @@ public interface TransportEventMapper {
     })
   TimestampTO toTO(TransportEvent transportEvent);
 
-  @Mappings(
-    value = {
-      @Mapping(target = "transportEventTypeCode", source = "eventTypeCode"),
-      @Mapping(target = "eventClassifierCode", source = "eventClassifierCode"),
-      @Mapping(target = "eventCreatedDateTime", source = "eventCreatedDateTime"),
-    })
-  TransportEvent toEntity(TimestampTO timestampTO);
+  default String map(OffsetDateTime value){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssXXX");
+    return value.format(formatter);
+  }
 }
