@@ -141,6 +141,7 @@ CREATE TABLE point_to_point_routing (
 
 CREATE TABLE leg (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    sequence_number INT NOT NULL,
     mode_of_transport VARCHAR(100),
     vessel_operator_smdg_liner_code VARCHAR(100),
     vessel_imo_number VARCHAR(100),
@@ -179,7 +180,9 @@ INSERT INTO un_location(
   ('JPTYO','Tokyo','TYO'),
   ('BRRIO','Rio de Janeiro','RIO'),
   ('NLRTM','Rotterdam','RTM'),
-  ('NLAMS','Amsterdam','AMS');;
+  ('FRPAR','Paris','PAR'),
+  ('FRLEH','Le Harve','LEH'),
+  ('NLAMS','Amsterdam','AMS');
 
 INSERT INTO location (
     id,
@@ -195,7 +198,10 @@ INSERT INTO location (
   ('6748a248-fb7e-4f27-9a88-366978b9c5f8','Madrid Dry Port', uuid('8561f557-fe69-42c9-a420-f39f09dd6207'),null,null,null,null),
   ('dbbcec36-edb3-403b-870f-85abee25cac9', 'Tokyo',null,'35.6762','139.6503','JPTYO',null),
   ('daa0a384-51bb-4704-bada-3bb2443f03eb','Rio de Janeiro',null,'22.9068','43.1729','BRRIO',(SELECT id FROM facility WHERE un_location_code = 'BRSSZ' AND facility_smdg_code = 'BTP')),
-  ('6748a259-fb7e-4f27-9a88-366978b9c5f8','Port of Amsterdam', null,null,null,'NLAMS',null);
+  ('6748a259-fb7e-4f27-9a88-366978b9c5f8','Port of Amsterdam', null,null,null,'NLAMS',null),
+  ('9048a259-fb7e-4f27-9a88-366978b9c5f8','', null,null,null,'FRPAR',null),
+  ('8048a259-fb7e-4f27-9a88-366978b9c5f8','Le Havre', null,null,null,'FRLEH',null),
+  ('1048a259-fb7e-4f27-9a88-366978b9c5f8','PSA Singapore Terminal', null,null,null,'SGSIN',null);
 
 INSERT INTO facility(
   facility_name,
@@ -205,7 +211,9 @@ INSERT INTO facility(
   location_id)
   VALUES('BRASIL TERMINAL PORTUARIOS (BTP)','BRSSZ','','BTP','daa0a384-51bb-4704-bada-3bb2443f03eb'),
   ('APM TERMINALS ELIZABETH','USNYC','','APMT','06aca2f6-f1d0-48f8-ba46-9a3480adfd23'),
-  (' BRANI TERMINAL','SGSIN','','PSABT','6748a259-fb7e-4f27-9a88-3669e8b9c5f8');
+  ('BRANI TERMINAL','SGSIN','','PSABT','6748a259-fb7e-4f27-9a88-3669e8b9c5f8'),
+  ('TERMINAL DE NORMANDIE MSC (TNMSC)','FRLEH','','TNMSC','8048a259-fb7e-4f27-9a88-366978b9c5f8'),
+  ('','','','TNMSC','8048a259-fb7e-4f27-9a88-366978b9c5f8');
 
 
 INSERT INTO carrier(
@@ -213,51 +221,15 @@ INSERT INTO carrier(
   smdg_code,
   nmfta_code
 ) VALUES
-  (
-    'CMA CGM',
-    'CMA',
-    'CMDU'
-   ),
-   (
-    'Evergreen Marine Corporation',
-    'EMC',
-    'EGLV'
-    ),
-    (
-      'Hapag Lloyd',
-      'HLC',
-      'HLCU'
-      ),
-    (
-      'Hyundai',
-      'HMM',
-      'HDMU'
-      ),
-    (
-      'Maersk',
-      'MSK',
-      'MAEU'
-      ),
-    (
-      'Mediterranean Shipping Company',
-      'MSC',
-      'MSCU'
-      ),
-    (
-      'Ocean Network Express Pte. Ltd.',
-      'ONE',
-      'ONEY'
-      ),
-    (
-      'Yang Ming Line',
-      'YML',
-      'YMLU'
-      ),
-    (
-      'Zim Israel Navigation Company',
-      'ZIM',
-      'ZIMU'
-      );
+  ('CMA CGM','CMA','CMDU'),
+  ('Evergreen Marine Corporation','EMC','EGLV'),
+  ('Hapag Lloyd','HLC','HLCU'),
+  ('Hyundai','HMM','HDMU'),
+  ('Maersk','MSK','MAEU'),
+  ('Mediterranean Shipping Company','MSC','MSCU'),
+  ('Ocean Network Express Pte. Ltd.','ONE','ONEY'),
+  ('Yang Ming Line','YML','YMLU'),
+  ('Zim Israel Navigation Company','ZIM','ZIMU');
 
 INSERT INTO vessel (
     vessel_imo_number,
@@ -423,16 +395,23 @@ INSERT INTO place(
   date_time
   ) VALUES(uuid('8948a259-fb7e-4f27-9a88-366978b9c5f8'),'POTE','6748a259-fb7e-4f27-9a88-366978b9c5f8','2019-08-24T14:15:22Z'),
   (uuid('4548a259-fb7e-4f27-9a88-366978b9c5f8'),'COYA','6748b859-fb7e-4f27-9a88-366978b9c5f8','2023-12-4T07:00+01:00'),
-  (uuid('5490a259-fb7e-4f27-9a88-366978b9c5f8'),'COYA','6748a259-fb7e-4f27-9a88-366978b9c5f8','2023-12-12T20:00+01:00');
-
+  (uuid('5490a259-fb7e-4f27-9a88-366978b9c5f8'),'COYA','6748a259-fb7e-4f27-9a88-366978b9c5f8','2023-12-12T20:00+01:00'),
+  (uuid('9090a259-fb7e-4f27-9a88-366978b9c5f8'),'WAYP','9048a259-fb7e-4f27-9a88-366978b9c5f8','2024-01-14T13:00+01:00'),
+  (uuid('8090a259-fb7e-4f27-9a88-366978b9c5f8'),'POTE','8048a259-fb7e-4f27-9a88-366978b9c5f8','2024-01-17T14:00+01:00'),
+  (uuid('1090a259-fb7e-4f27-9a88-366978b9c5f8'),'POTE','8048a259-fb7e-4f27-9a88-366978b9c5f8','2024-01-22T14:00+01:00'),
+  (uuid('1190a259-fb7e-4f27-9a88-366978b9c5f8'),'POTE','1048a259-fb7e-4f27-9a88-366978b9c5f8','2024-02-10T14:28+08:00'),
+  (uuid('7020a259-fb7e-4f27-9a88-366978b9c5f8'),'WAYP','9048a259-fb7e-4f27-9a88-366978b9c5f8','2024-01-14T13:00+01:00'),
+  (uuid('8020a259-fb7e-4f27-9a88-366978b9c5f8'),'CLOC','1048a259-fb7e-4f27-9a88-366978b9c5f8','2024-02-12T12:28+08:00');
 INSERT INTO point_to_point_routing(
   id,
   transit_time,
   place_of_receipt_id,
   place_of_delivery_id
-  ) VALUES ('4548a259-ae7e-4f27-9a88-366978b9c5f8',10,'4548a259-fb7e-4f27-9a88-366978b9c5f8','5490a259-fb7e-4f27-9a88-366978b9c5f8');
+  ) VALUES ('4548a259-ae7e-4f27-9a88-366978b9c5f8',10,'4548a259-fb7e-4f27-9a88-366978b9c5f8','5490a259-fb7e-4f27-9a88-366978b9c5f8'),
+  ('9988a259-ae7e-4f27-9a88-366978b9c5f8',20,'7020a259-fb7e-4f27-9a88-366978b9c5f8','8020a259-fb7e-4f27-9a88-366978b9c5f8');
 
 INSERT INTO leg(
+    sequence_number,
     mode_of_transport,
     vessel_operator_smdg_liner_code,
     vessel_imo_number,
@@ -447,7 +426,9 @@ INSERT INTO leg(
     departure_id,
     arrival_id,
     point_to_point_routing_id
-)VALUES('VESSEL','HLC','9321483','King of the Seas','Great Lion Service','SR12345A','FE1','2103N','2103N','2103S','2103N','4548a259-fb7e-4f27-9a88-366978b9c5f8','5490a259-fb7e-4f27-9a88-366978b9c5f8','4548a259-ae7e-4f27-9a88-366978b9c5f8');
+)VALUES(1,'VESSEL','HLC','9321483','King of the Seas','Great Lion Service','SR12345A','FE1','2103N','2103N','2103S','2103N','4548a259-fb7e-4f27-9a88-366978b9c5f8','5490a259-fb7e-4f27-9a88-366978b9c5f8','4548a259-ae7e-4f27-9a88-366978b9c5f8'),
+       (1,'BARGE','','','','','','','','','','','9090a259-fb7e-4f27-9a88-366978b9c5f8','8090a259-fb7e-4f27-9a88-366978b9c5f8','9988a259-ae7e-4f27-9a88-366978b9c5f8'),
+       (2,'VESSEL','MSC','9930038','MSC TESSA','Singapore Express','SR12365B','AE55','2401E','2401E','401E','401E','1090a259-fb7e-4f27-9a88-366978b9c5f8','1190a259-fb7e-4f27-9a88-366978b9c5f8','9988a259-ae7e-4f27-9a88-366978b9c5f8');
 
 
 

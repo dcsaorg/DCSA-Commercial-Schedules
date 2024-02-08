@@ -18,6 +18,8 @@ public class Leg {
   @Column(name = "id", nullable = false)
   private UUID id;
 
+  @Column(name= "sequence_number")
+  private int sequenceNumber;
   @Column(name= "mode_of_transport")
   private String modeOfTransport;
   @Column(name= "vessel_operator_smdg_liner_code")

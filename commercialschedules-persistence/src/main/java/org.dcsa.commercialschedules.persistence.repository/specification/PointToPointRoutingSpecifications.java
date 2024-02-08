@@ -20,7 +20,8 @@ public class PointToPointRoutingSpecifications {
   public static Specification<PointToPointRouting> withFilters(
     String placeOfReceipt,
     String placeOfDelivery,
-    OffsetDateTime departureDateTime
+    OffsetDateTime departureDateTime,
+    OffsetDateTime arrivalDateTime
   ) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();
@@ -40,7 +41,10 @@ public class PointToPointRoutingSpecifications {
       }
 
       if (departureDateTime != null) {
-        predicates.add(criteriaBuilder.equal(placeOfReceiptJoin.get("dateTime"), departureDateTime));
+        predicates.add(criteriaBuilder.greaterThanOrEqualTo(placeOfReceiptJoin.get("dateTime"), departureDateTime));
+      }
+      if (arrivalDateTime != null) {
+        predicates.add(criteriaBuilder.greaterThanOrEqualTo(placeOfDeliveryJoin.get("dateTime"), arrivalDateTime));
       }
 
       return criteriaBuilder.and(predicates.toArray(new Predicate[0]));

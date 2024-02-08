@@ -34,7 +34,7 @@ public class CommercialSchedulesController {
   private final PointToPointRoutingService pointToPointRoutingService;
   private final Paginator paginator;
 
-  @GetMapping(path = "/vessel-schedule")
+  @GetMapping(path = "/vessel-schedules")
   @ResponseStatus(HttpStatus.OK)
   public List<ServiceScheduleTO> findAll(
     @Size(max = 11) @RequestParam(required = false) String carrierServiceCode,
@@ -83,20 +83,26 @@ public class CommercialSchedulesController {
     @Size(min = 5) @Size(max = 5)@RequestParam(required = true) String placeOfReceipt,
     @Size(min = 5) @Size(max = 5)@RequestParam(required = true) String placeOfDelivery,
     @RequestParam(required = false) String departureDateTime,
+    @RequestParam(required = false) String arrivalDateTime,
     @RequestParam(required = false) boolean isTranshipment,
     @RequestParam(required = false) String receiptTypeAtOrigin,
     @RequestParam(required = false) String deliveryTypeAtDestination,
-    @RequestParam(required = false) int limit
+    @RequestParam(required = false, defaultValue = "100") Integer limit,
+    @RequestParam(value = "API-Version", required = false) String apiVersion,
+    HttpServletRequest request, HttpServletResponse response
   ){
-    List<PointToPointRoutingTO> pointToPointRoutingTOs = pointToPointRoutingService.findAllRoutes(placeOfReceipt,placeOfDelivery,departureDateTime,isTranshipment,receiptTypeAtOrigin,deliveryTypeAtDestination,limit);
+    List<PointToPointRoutingTO> pointToPointRoutingTOs = pointToPointRoutingService.findAllRoutes(placeOfReceipt,placeOfDelivery,departureDateTime,arrivalDateTime,isTranshipment,receiptTypeAtOrigin,deliveryTypeAtDestination,limit);
 
     return pointToPointRoutingTOs;
   }
 
-  @GetMapping(path = "/port-schedule")
+  @GetMapping(path = "/port-schedules")
   public List<PortScheduleTO> findAllPortSchedules(
       @Size(min = 5) @Size(max = 5) @RequestParam(required = true) String port,
-      @RequestParam(required = true) String date) {
+      @RequestParam(required = true) String date,
+      @RequestParam(value = "API-Version", required = false) String apiVersion,
+      HttpServletRequest request, HttpServletResponse response) {
+
     List<PortScheduleTO> portScheduleTOs = portScheduleService.findAll(port, date);
     return portScheduleTOs;
   }
