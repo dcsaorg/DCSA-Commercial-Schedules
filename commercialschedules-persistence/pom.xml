@@ -2,13 +2,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.dcsa.commercialschedules</groupId>
+		<groupId>org.dcsa.cs</groupId>
 		<artifactId>dcsa-commercialschedules-parent</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
 	<name>DCSA Commercial Schedules - Database Persistence</name>
-	<groupId>org.dcsa.commercialschedules</groupId>
+	<groupId>org.dcsa.cs</groupId>
 	<artifactId>dcsa-commercialschedules-persistence</artifactId>
 	<version>${revision}${sha1}${changelist}</version>
 	<packaging>jar</packaging>
