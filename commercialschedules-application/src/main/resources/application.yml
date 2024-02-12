@@ -82,7 +82,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/dcsa_commercialschedules
+    url: jdbc:postgresql://localhost:5432/dcsa_cs
     username: admin
     password: change_this_password
 

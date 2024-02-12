@@ -91,9 +91,14 @@ public class CommercialSchedulesController {
     @RequestParam(value = "API-Version", required = false) String apiVersion,
     HttpServletRequest request, HttpServletResponse response
   ){
-    List<PointToPointRoutingTO> pointToPointRoutingTOs = pointToPointRoutingService.findAllRoutes(placeOfReceipt,placeOfDelivery,departureDateTime,arrivalDateTime,isTranshipment,receiptTypeAtOrigin,deliveryTypeAtDestination,limit);
+    Cursor cursor = paginator.parseRequest(
+      request,
+      new CursorDefaults(limit, Sort.Direction.DESC));
 
-    return pointToPointRoutingTOs;
+    PagedResult<PointToPointRoutingTO> result = pointToPointRoutingService.findAllRoutes(cursor,placeOfReceipt,placeOfDelivery,departureDateTime,arrivalDateTime,isTranshipment,receiptTypeAtOrigin,deliveryTypeAtDestination);
+
+    paginator.setPageHeaders(request, response, cursor, result);
+    return result.content();
   }
 
   @GetMapping(path = "/port-schedules")

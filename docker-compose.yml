@@ -2,14 +2,14 @@ version: '3.5'
 
 services:
   dcsa-commercialschedules:
-    container_name: dcsa_commercialschedules
+    container_name: dcsa_cs
     build:
       .
     ports:
       - 9090:9090
     environment:
       - "DB_HOST=dcsa-test-db"
-      - "DB_NAME=dcsa_commercialschedules"
+      - "DB_NAME=dcsa_cs"
       - "DB_USER=admin"
       - "DB_PASSWORD=change_this_password"
       - "ADMIN_DB_USER=admin"
@@ -29,11 +29,11 @@ services:
 
   dcsa-test-db:
     image: postgres:15-alpine
-    container_name: dcsa_commercialschedules_db
+    container_name: dcsa_cs_db
     environment:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "change_this_password"
-      POSTGRES_DB: "dcsa_commercialschedules"
+      POSTGRES_DB: "dcsa_cs"
     volumes:
       - ./domain/src/main/init.db:/docker-entrypoint-initdb.d:ro
     ports:

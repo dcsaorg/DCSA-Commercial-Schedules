@@ -3,6 +3,6 @@
 
 \set ON_ERROR_STOP true
 
-CREATE DATABASE dcsa_commercialschedules;
+CREATE DATABASE dcsa_cs;
 
 
