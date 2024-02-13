@@ -2,15 +2,20 @@ version: '3.5'
 
 services:
   dcsa-commercialschedules:
-    container_name: dcsa_commercialschedules
+    container_name: dcsa_cs
     build:
       .
     ports:
       - 9090:9090
     environment:
-      - "db_hostname=dcsa-test-db"
+      - "DB_HOST=dcsa-test-db"
+      - "DB_NAME=dcsa_cs"
+      - "DB_USER=admin"
+      - "DB_PASSWORD=change_this_password"
+      - "ADMIN_DB_USER=admin"
+      - "ADMIN_DB_PASSWORD=change_this_password"
       - "SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-nosecurity}"
-      - "SPRING_DATASOURCE_PASSWORD=9c072fe8-c59c-11ea-b8d1-7b6577e9f3f5"
+      - "SPRING_DATASOURCE_PASSWORD=change_this_password"
       - "ROOT_LOG_LEVEL=${ROOT_LOG_LEVEL:-INFO}"
       - "DCSA_LOG_LEVEL=${DCSA_LOG_LEVEL:-INFO}"
     logging:
@@ -24,9 +29,11 @@ services:
 
   dcsa-test-db:
     image: postgres:15-alpine
-    container_name: dcsa_commercialschedules_db
+    container_name: dcsa_cs_db
     environment:
+      POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "change_this_password"
+      POSTGRES_DB: "dcsa_cs"
     volumes:
       - ./domain/src/main/init.db:/docker-entrypoint-initdb.d:ro
     ports:

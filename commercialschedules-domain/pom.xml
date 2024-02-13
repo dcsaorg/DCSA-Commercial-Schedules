@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.dcsa.commercialschedules</groupId>
+		<groupId>org.dcsa.cs</groupId>
 		<artifactId>dcsa-commercialschedules-parent</artifactId>
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
@@ -44,4 +44,12 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 </project>
